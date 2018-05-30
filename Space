@@ -1,0 +1,35 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Ava Zorn
+ * AP CSA
+ * Ms. Rioux
+ */
+
+public class Space extends World
+{
+    /**
+     * Stuff I add to screen
+     * 
+     */
+    public Space()
+    {    
+        //World Size
+        super(600, 400, 1); 
+        
+        //Rocket stuff
+        Rocket rocket = new Rocket(); 
+        addObject(rocket, 45, 300);
+        
+        //Rock stuff
+        Rock rock1 = new Rock();
+        addObject(rock1, 550, 100);
+        
+        Rock rock2 = new Rock();
+        addObject(rock2, 550, 200);
+        
+        Rock rock3 = new Rock();
+        addObject(rock3, 550, 300);
+    }
+    
+}
