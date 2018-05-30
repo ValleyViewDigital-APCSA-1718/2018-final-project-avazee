@@ -1,0 +1,71 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Rock stuff
+ * Attacks ship
+ * Move back of screen
+ */
+public class Rock extends MyThings implements Move
+{
+    int score = 1;
+    
+    //actor actions
+    public void act() 
+    {
+        move(4);
+        atEdge();
+        destroy();
+        scoreCalc(scoreList);
+        dodgeCalc(dodgeList);
+        showRockScore();
+    }   
+    
+    //rock moves
+    public void move(int speed)
+    {
+        setLocation(getX()-speed, getY());
+    }
+    
+    //shows score
+    public void showRockScore()
+    {
+        getWorld().showText("Dodges:"+dodgeCalc(dodgeList),100,50);
+        getWorld().showText("Score: "+scoreCalc(scoreList),100,100);
+    }
+    //Checks if at edge
+    //puts score in arraylist
+    public void atEdge()
+    {
+        if(isAtEdge())
+        {
+            //gets random number and typecast int
+            int random = (int)(Math.random()*401);
+            
+            //sets random place
+            setLocation(600, random);
+            
+            //adds to arraylist
+            scoreList.add(this.score);
+            
+            //3 rocks so it adds yes 3 times
+            for(int rocks = 3; rocks>0; rocks--)
+            {
+                dodgeList.add("Yes");
+            }
+            score+=2;
+        }
+    }
+    
+    //breaks rocket when touching
+    //tells you loose
+    public void destroy()
+    {
+        Actor Rocket = getOneIntersectingObject(Rocket.class);
+        if(Rocket != null)
+        {
+            getWorld().removeObject(Rocket);
+            getWorld().showText("You Loose", 300, 200);
+            dodgeList.add("No");
+        }
+    }
+}
