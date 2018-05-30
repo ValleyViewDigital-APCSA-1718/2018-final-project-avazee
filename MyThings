@@ -1,0 +1,46 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
+
+/**
+ * stuff i will use in my classes
+ * my score method
+ */
+public class MyThings extends Actor implements Move
+{
+    ArrayList<Integer> scoreList = new ArrayList<>();
+    ArrayList<String> dodgeList = new ArrayList<>();
+    
+    //checks score in game
+    //you win if you get certain points
+    public int scoreCalc(ArrayList list)
+    {
+        ArrayList<Integer> arr = list;
+        int score = 0;
+        for(int count = 0; count<arr.size(); count++)
+        {
+            score += scoreList.get(count);
+            if((score>25)&&(dodgeCalc(dodgeList)>35))
+            {
+                getWorld().showText("You Win!!!!", 300, 200);
+                getWorld().removeObject(this);
+            }
+        }
+        return score;
+    }
+    
+    //checks how many rocks you dodge
+    public int dodgeCalc(ArrayList list)
+    {
+        ArrayList<String> arr = list;
+        int dodge = 0;
+        for(int count = 0; count<arr.size(); count++)
+        {
+            if(arr.get(count) == "Yes")
+            {
+                dodge++;
+            }
+        }
+        return dodge;
+    }
+    
+}
