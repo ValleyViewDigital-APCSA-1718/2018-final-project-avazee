@@ -1,0 +1,46 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * My Rocket
+ * Flies n stuff like a Rocket
+ */
+public class Rocket extends MyThings implements Move
+{
+    //rocket actions
+    public void act() 
+    {
+        move(3);
+        stopAtEdge();
+        
+    }
+    
+    //rocket move method
+    public void move(int speed)
+    {
+        if (Greenfoot.isKeyDown ("down"))
+        {
+            setLocation(getX(), getY() + speed);
+        }
+        if (Greenfoot.isKeyDown ("up"))
+        {
+            setLocation(getX(), getY() + -speed);
+        }
+    }
+    
+    //rocket wont leave screen
+    public void stopAtEdge()
+    {
+        if(isAtEdge())
+        {
+            int height = getY();
+            if(height>199)
+            {
+                setLocation(getX(), height-20);
+            } 
+            else if (height<201)
+            {
+                setLocation(getX(), height+20);
+            }
+        }
+    }
+}
